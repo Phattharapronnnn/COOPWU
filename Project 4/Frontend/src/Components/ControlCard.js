@@ -3,11 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import { Card, CardContent, Input, Button } from "@mui/joy";
 
 
-export default function ControlCard({ title }) {
+export default function ControlCard({ title }) { 
     const { control, handleSubmit } = useForm();
     const handleCreateUser = (data) => {
         console.log("data", data);
     };
+    
     return (
 
         <div className='lg:w-3/4 '>

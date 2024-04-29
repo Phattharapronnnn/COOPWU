@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import React, { useState, useEffect } from "react";
 import './App.css';
-import ControlCard from './Components/ControlCard';
+//import ControlCard from './Components/ControlCard';
 import { Card, CardContent, Input, Table, Button, LinearProgress } from "@mui/joy";
 import _ from 'lodash';
 import axios from 'axios';
@@ -14,7 +14,7 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
   const [isReady, setIsReady] = useState(false)
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
   const handleDeleteUser = (userId) => {
     axios
       .delete("http://localhost:3001/api/user/" + userId)
@@ -26,9 +26,6 @@ export default function App() {
         console.error("Error", error?.message);
       });
   };
-
-
-
   // useEffect(() => {
   //   alert(`You Search ${searchTerm}`);
   //   return () => {};
@@ -84,6 +81,32 @@ export default function App() {
       <div className='min-h-screen'>
         <div className='flex justify-center '>
           <div className='lg:w-3/4'>
+            <div className='my-1 font-semibold text-lg'>เพิ่มพนักงานใหม่</div>
+            <Card>
+              <CardContent>
+                <form onSubmit={handleSubmit(handleCreateUser)}>
+                  <div>ชื่อ</div>
+                  <Controller
+                    name='name'
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} placeholder='ชื่อพนักงาน' />
+                    )}
+                  />
+                  <div>แผนก</div>
+                  <Controller
+                    name='department'
+                    control={control}
+                    render={({ field }) => (
+                      <Input {...field} placeholder='แผนก' />
+                    )}
+                  />
+                  <div>
+                    <Button type="submit">บันทึก</Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
             {/* <Card>
               <CardContent>
                 <div>Search Box</div>
@@ -111,7 +134,7 @@ export default function App() {
         ))}
       </div> */}
 
-            <ControlCard />
+            {/* <ControlCard /> */}
             <h3 className='font-bold'>User List</h3>
             <Table>
               <thead>
