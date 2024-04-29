@@ -2,13 +2,10 @@ const userRouter = require('./routes/user.routes')
 const express = require('express');
 const app = express();
 const port = 3001;
-const User = require("./models/User");
 const mongoose = require('mongoose')
-
 const cors = require("cors");
-app.use(cors({}));
 
-app.use("/api/user", userRouter);
+app.use(cors({}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,10 +19,7 @@ mongoose.connect(uri).then(
   }
 );
 
-app.get('/', (req, res) => {
-   res.send('วันศุกร์ได้ย๊างงง')
-})
-
+app.use("/api/user", userRouter);
 app.listen(port, () => {
    console.log(`Example app listening on port ${port}`);
 })
