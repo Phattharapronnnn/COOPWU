@@ -18,7 +18,6 @@ mongoose.connect(uri).then(
   console.error("Connection to mongodb is error", err?.message);
   }
 );
-
 app.use("/api/user", userRouter);
 app.listen(port, () => {
    console.log(`Example app listening on port ${port}`);

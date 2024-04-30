@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import Footer from "./Components/Footer";
 import Topbar from "./Components/Topbar";
+import DetailUser from './views/DetailUser';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/create' element={<CreateOneUser />} />
           <Route path='/' element={<UserList />} />
+          <Route path='/detail/:id' element={<DetailUser />} />
         </Routes>
         <Footer />
       </BrowserRouter>

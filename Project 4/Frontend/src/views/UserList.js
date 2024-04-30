@@ -9,6 +9,7 @@ import {
 } from "@mui/joy";
 import axios from "axios";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 function CreateUser() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,7 +32,7 @@ function CreateUser() {
 
   useEffect(() => {
     getAllUser();
-    return () => {};
+    return () => { };
   }, []);
 
   const handleDeleteUser = (userId) => {
@@ -88,12 +89,17 @@ function CreateUser() {
                     <td>{eachUser?.name}</td>
                     <td>{eachUser?.department}</td>
                     <td>
+                    <Link to={`/detail/${eachUser?._id}`}>
+                        <Button>รายละเอียด</Button>
+                      </Link>
+                     
                       <Button
                         color='danger'
                         onClick={() => handleDeleteUser(eachUser?._id)}
                       >
                         ลบ
                       </Button>
+                      
                     </td>
                   </tr>
                 ))}
